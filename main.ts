@@ -158,25 +158,25 @@ namespace SuperBit {
         control.waitMicros(5000);
         i2cwrite(PCA9685_ADD, MODE1, oldmode | 0xa1);
     }
-
-    //% blockId=SuperBit_runMotor block="runMotor(360°)|num %num|pos %pos|value %value"
-    //% weight=96
+    
+    //% blockId=SuperBit_RunMotor block="RunMotor(360°)|num %num|pos %pos|value %value"
+    //% weight=100
     //% blockGap=10
     //% num.min=1 num.max=4 value.min=0 value.max=90
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=20
-    export function runMotor(num: enServo, pos: enPos, value: number): void {
+    export function RunMotor(num: enServo, pos: enPos, value: number): void {
         if (pos == enPos.stop) {
            
-            let pwm = 345;
+            let pwm = 347;
             setPwm(num, 0, pwm);
         }
         else if(pos == enPos.forward){ //0-90 -> 90 - 0
            
-            let pwm = 345+value*2;
+            let pwm = 347+value*2;
             setPwm(num, 0, pwm);
         }
         else if(pos == enPos.reverse){ //0-90 -> 90 -180
-            let pwm = 345-value*2;
+            let pwm = 347-value*2;
             setPwm(num, 0, pwm);
         }
 
