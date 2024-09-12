@@ -158,7 +158,22 @@ namespace SuperBit {
         control.waitMicros(5000);
         i2cwrite(PCA9685_ADD, MODE1, oldmode | 0xa1);
     }
-    
+    //% blockId=SuperBit_ShowI2c block="ShowI2c"
+    //% weight=101
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function  ShowI2c (): void {
+        
+        for (let address = 0; address < 128; address++) {
+            if (address >= 8 && address <= 119) { // 跳过无效地址
+                if (pins.i2cIsDeviceConnected(address)) {
+                    basic.showString("" + address, 100)
+                    basic.pause(3000) // 暂停一段时间以便查看
+                }
+            }
+        }
+         
+    }
     //% blockId=SuperBit_RunMotor block="RunMotor(360°)|num %num|pos %pos|value %value"
     //% weight=100
     //% blockGap=10
